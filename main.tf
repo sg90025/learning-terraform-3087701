@@ -29,6 +29,8 @@ module "blog_vpc" {
   
   public_subnets  = ["${var.environment.network_prefix}.101.0/24", "${var.environment.network_prefix}.102.0/24", "${var.environment.network_prefix}.103.0/24"]
 
+  enable_nat_gateway = true
+
   tags = {
     Terraform = "true"
     Environment = "var.environment.name"
@@ -47,6 +49,7 @@ module "autoscaling" {
 
   vpc_zone_identifier = module.blog_vpc.public_subnets
   target_group_arns   = module.blog_alb.target_group_arns
+  security_groups     = [module.blog_sg.security_group_id]
   
 
   image_id      = data_aws_ami.app_ami.id
