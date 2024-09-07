@@ -1,9 +1,10 @@
 variable "instance_type" {
      description = "Type of EC2 instance to provision"
-  default     = "t3.nano"
+     default     = "t3.nano"
 }
 
-variable "ami_filter"
+variable "ami_filter"{
+
   description = "Name filter and owner for AMI"
 
   type = object({
@@ -15,6 +16,9 @@ variable "ami_filter"
     name = ["bitnami-tomcat-*-x86_64-hvm-ebs-nami"]
     owner = ["979382823631"] # Bitnami
   }
+
+}
+  
 
 }
 
