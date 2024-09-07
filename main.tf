@@ -52,7 +52,6 @@ module "autoscaling" {
   image_id      = data_aws_ami.app_ami.id
   instance_type = var.instance_type
 
-
 }
 
 module "blog-alb" {
@@ -63,7 +62,7 @@ module "blog-alb" {
   subnets = module.blog_vpc.public_subnets
 
   # Security Group
-  security_groups = module.blog_sg.security_group_id
+  security_groups = [module.blog_sg.security_group_id]
   
   security_group_ingress_rules = {
     all_http = {
@@ -116,7 +115,6 @@ module "blog-alb" {
       protocol         = "HTTP"
       port             = 80
       target_type      = "instance"
-      target_id        = aws_instance.blog.id
     }
   }
 
