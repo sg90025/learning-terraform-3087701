@@ -45,15 +45,3 @@ variable "asg_max_size"{
   description = "Maximum number of instances in the ASG"
   default     = 2
 }
-
-  # insert the 1 required variable here
-
-  vpc_zone_identifier = module.blog_vpc.public_subnets
-  target_group_arns   = module.blog_alb.target_group_arns
-  
-
-  image_id      = data_aws_ami.app_ami.id
-  instance_type = var.instance_type
-
-}
-
