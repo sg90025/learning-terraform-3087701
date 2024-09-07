@@ -20,8 +20,6 @@ variable "ami_filter"{
 }
   
 
-}
-
 
 data "aws_vpc" "default" {
   default = true
